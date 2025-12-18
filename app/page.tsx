@@ -2,11 +2,18 @@
 
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/landing/Header";
 import { Footer } from "@/components/landing/Footer";
 import { Button } from "@/components/landing/Button";
 
 export default function LandingPage() {
+  const router = useRouter();
+
+  const handleBookingClick = () => {
+    router.push("/buchen");
+  };
+
   return (
     <div className="bg-white relative w-full min-h-screen">
       {/* Header - Fixed at top */}
@@ -27,7 +34,11 @@ export default function LandingPage() {
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium mb-8 md:mb-10 lg:mb-12 text-gray-700 max-w-3xl">
               Natürliche Heilung für Körper und Seele
             </p>
-            <Button variant="Outline" className="h-[50px] md:h-[55px] w-full sm:w-auto sm:min-w-[250px] px-8" />
+            <Button 
+              variant="Outline" 
+              className="h-[50px] md:h-[55px] w-full sm:w-auto sm:min-w-[250px] px-8"
+              onClick={handleBookingClick}
+            />
           </div>
           
           {/* Small green decorative bar */}
@@ -135,7 +146,10 @@ export default function LandingPage() {
               Vereinbaren Sie jetzt Ihren persönlichen Termin.
             </p>
             <div className="flex justify-center">
-              <Button className="h-[60px] md:h-[75px] lg:h-[93px] w-full sm:w-auto sm:min-w-[280px] md:min-w-[322px] px-8 md:px-12" />
+              <Button 
+                className="h-[60px] md:h-[75px] lg:h-[93px] w-full sm:w-auto sm:min-w-[280px] md:min-w-[322px] px-8 md:px-12"
+                onClick={handleBookingClick}
+              />
             </div>
           </div>
         </section>

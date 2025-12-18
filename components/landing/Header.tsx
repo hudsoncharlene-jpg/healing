@@ -46,7 +46,7 @@ export function Header({ className = "" }: HeaderProps) {
               About
             </Link>
             <Link 
-              href="/appointments" 
+              href="/buchen" 
               className="hidden sm:block text-xs sm:text-sm md:text-base lg:text-lg xl:text-[24px] font-medium text-[#2E2E2E] hover:text-[#1A0089] transition-colors leading-normal whitespace-nowrap"
             >
               Appointments
