@@ -1,23 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/landing/Header";
 import { Footer } from "@/components/landing/Footer";
 import { BookingOptionCard } from "@/components/booking/BookingOptionCard";
-import { AppointmentSummaryCard } from "@/components/booking/AppointmentSummaryCard";
 
 export default function BuchenPage() {
-  const [selectedBookingType, setSelectedBookingType] = useState<string | null>(null);
+  const router = useRouter();
 
-  const handleBookingTypeClick = (type: string) => {
-    setSelectedBookingType(type);
+  function handleBookingTypeClick(type: string) {
     console.log(`Selected booking type: ${type}`);
-  };
-
-  const handleNextClick = () => {
-    console.log("Proceeding to next step");
-    // TODO: Navigate to next step in booking flow
-  };
+    // Navigate to calendar page with booking type
+    router.push(`/buchen/calendar?type=${type}`);
+  }
 
   return (
     <div className="bg-white relative w-full min-h-screen">
@@ -54,36 +50,16 @@ export default function BuchenPage() {
               Buchen
             </h1>
             
-            {/* Two-column layout for desktop, stacked on mobile */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20">
-              
-              {/* Left column - Booking Options */}
-              <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-[60px] max-w-[499px] mx-auto lg:mx-0 w-full">
-                <BookingOptionCard
-                  title="Virtual Termin"
-                  onClick={() => handleBookingTypeClick("virtual")}
-                />
-                <BookingOptionCard
-                  title="Vor Ort Termin"
-                  onClick={() => handleBookingTypeClick("in-person")}
-                />
-              </div>
-              
-              {/* Right column - Appointment Summaries */}
-              <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-[60px] max-w-[499px] mx-auto lg:mx-0 w-full lg:pl-4 xl:pl-8">
-                <AppointmentSummaryCard
-                  appointmentType="Telemed Wellness Visit-for established patients"
-                  description="$125.00 • 60 min"
-                  price="$125.00"
-                  onNext={handleNextClick}
-                />
-                <AppointmentSummaryCard
-                  appointmentType="Telemed Wellness Visit-for established patients"
-                  description="$125.00 • 60 min"
-                  price="$125.00"
-                  onNext={handleNextClick}
-                />
-              </div>
+            {/* Centered booking options */}
+            <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-[60px] max-w-[499px] mx-auto w-full">
+              <BookingOptionCard
+                title="Virtual Termin"
+                onClick={() => handleBookingTypeClick("virtual")}
+              />
+              <BookingOptionCard
+                title="Vor Ort Termin"
+                onClick={() => handleBookingTypeClick("in-person")}
+              />
             </div>
           </div>
         </section>
