@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Header } from "@/components/landing/Header";
 import { Footer } from "@/components/landing/Footer";
 import { Button } from "@/components/landing/Button";
@@ -62,21 +63,23 @@ export default function LandingPage() {
         </section>
 
         {/* Blog Post Section */}
-        <section className="bg-[#EFE7D3] relative py-12 sm:py-16 md:py-20 lg:py-24 px-6 md:px-8 lg:px-12 overflow-hidden min-h-[300px] md:min-h-[400px] flex items-center">
-          {/* Navy decorative bar */}
-          <div className="absolute left-1/4 top-1/2 w-16 md:w-20 lg:w-24 h-[200px] md:h-[250px] bg-[#1A0089] opacity-70 md:opacity-80 rotate-90 hidden sm:block" />
-          
-          {/* Cloud decoration placeholder */}
-          <div className="absolute right-1/4 top-1/2 w-[250px] sm:w-[300px] md:w-[400px] lg:w-[500px] h-[150px] sm:h-[200px] md:h-[280px] lg:h-[339px] -translate-y-1/2 hidden lg:block">
-            <div className="w-full h-full bg-[#608AD9] opacity-20 rounded-full blur-xl" />
-          </div>
-          
-          <div className="max-w-4xl mx-auto text-center relative z-10 w-full">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900">
-              Neuer BLOG post!
-            </h2>
-          </div>
-        </section>
+        <Link href="/blog" className="block">
+          <section className="bg-[#EFE7D3] relative py-12 sm:py-16 md:py-20 lg:py-24 px-6 md:px-8 lg:px-12 overflow-hidden min-h-[300px] md:min-h-[400px] flex items-center cursor-pointer transition-all hover:bg-[#E8DFC6] group">
+            {/* Navy decorative bar */}
+            <div className="absolute left-1/4 top-1/2 w-16 md:w-20 lg:w-24 h-[200px] md:h-[250px] bg-[#1A0089] opacity-70 md:opacity-80 rotate-90 hidden sm:block group-hover:opacity-90 transition-opacity" />
+            
+            {/* Cloud decoration placeholder */}
+            <div className="absolute right-1/4 top-1/2 w-[250px] sm:w-[300px] md:w-[400px] lg:w-[500px] h-[150px] sm:h-[200px] md:h-[280px] lg:h-[339px] -translate-y-1/2 hidden lg:block">
+              <div className="w-full h-full bg-[#608AD9] opacity-20 rounded-full blur-xl group-hover:opacity-30 transition-opacity" />
+            </div>
+            
+            <div className="max-w-4xl mx-auto text-center relative z-10 w-full">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 group-hover:scale-105 transition-transform">
+                Neuer BLOG post!
+              </h2>
+            </div>
+          </section>
+        </Link>
 
         {/* Video Section */}
         <section className="bg-[#EFE7D3] relative py-12 sm:py-16 md:py-20 lg:py-24 px-6 md:px-8 lg:px-12 overflow-hidden">
