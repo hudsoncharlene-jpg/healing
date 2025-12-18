@@ -5,44 +5,31 @@ import { useSearchParams } from "next/navigation";
 import { Header } from "@/components/landing/Header";
 import { Footer } from "@/components/landing/Footer";
 import { Calendar } from "@/components/booking/Calendar";
-import { TimeSlotSelector } from "@/components/booking/TimeSlotSelector";
-import { AppointmentSummaryCard } from "@/components/booking/AppointmentSummaryCard";
+import { AppointmentCard } from "@/components/booking/AppointmentCard";
 
 export default function CalendarBookingPage() {
   const searchParams = useSearchParams();
   const bookingType = searchParams.get("type") || "virtual";
   
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
-  const [selectedTime, setSelectedTime] = useState<string | undefined>(undefined);
 
-  // Sample appointment data - in a real app, this would come from props/state/API
-  const appointments = [
-    {
-      id: "1",
-      title: "Telemed Wellness Visit-for established patients",
-      description: "$125.00 • 15 min",
-      price: "$125.00",
-    },
-    {
-      id: "2",
-      title: "Telemed Wellness Visit-for established patients",
-      description: "$125.00",
-      price: "$125.00",
-    },
-  ];
+  // Get appointment details based on booking type
+  const getAppointmentDetails = () => {
+    if (bookingType === "virtual") {
+      return {
+        title: "Virtual Termin",
+        duration: "50 Minuten",
+        price: "$185",
+      };
+    }
+    return {
+      title: "Vor Ort Termin",
+      duration: "50 Minuten",
+      price: "$185",
+    };
+  };
 
-  function handleNextClick() {
-    console.log("Proceeding to next step");
-    console.log("Selected date:", selectedDate);
-    console.log("Selected time:", selectedTime);
-    console.log("Booking type:", bookingType);
-    // TODO: Navigate to confirmation page
-  }
-
-  function handleEditAppointment(id: string) {
-    console.log("Edit appointment:", id);
-    // TODO: Implement edit functionality
-  }
+  const appointmentDetails = getAppointmentDetails();
 
   return (
     <div className="bg-white relative w-full min-h-screen">
@@ -76,33 +63,26 @@ export default function CalendarBookingPage() {
           <div className="max-w-7xl mx-auto relative z-10">
             {/* Page Title */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-8 sm:mb-10 md:mb-12 lg:mb-16 text-gray-900">
-              Buchen
+              {appointmentDetails.title}
             </h1>
             
             {/* Two-column layout for desktop, stacked on mobile */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20">
               
-              {/* Left column - Calendar and Time Slots */}
+              {/* Left column - Calendar */}
               <div className="flex flex-col gap-6 max-w-[499px] mx-auto lg:mx-0 w-full">
-                {/* Calendar */}
                 <Calendar
                   selectedDate={selectedDate}
                   onDateSelect={setSelectedDate}
                 />
-                
-                {/* Time Slot Selector */}
-                <TimeSlotSelector
-                  selectedTime={selectedTime}
-                  onTimeSelect={setSelectedTime}
-                />
               </div>
               
-              {/* Right column - Appointment Summary */}
+              {/* Right column - Appointment Card */}
               <div className="flex flex-col gap-8 max-w-[352px] mx-auto lg:mx-0 w-full lg:pl-4 xl:pl-8">
-                <AppointmentSummaryCard
-                  appointments={appointments}
-                  onNext={handleNextClick}
-                  onEdit={handleEditAppointment}
+                <AppointmentCard
+                  title={appointmentDetails.title}
+                  duration={appointmentDetails.duration}
+                  price={appointmentDetails.price}
                 />
               </div>
             </div>
