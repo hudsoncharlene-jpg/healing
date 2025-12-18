@@ -18,10 +18,10 @@ export function Button({
   if (variant === "Outline") {
     return (
       <button
-        className={`relative flex items-center justify-center border border-[#1A0089] border-solid rounded-[16px] px-[72px] py-[16px] hover:bg-[#1A0089] hover:text-white transition-colors ${className}`}
+        className={`relative flex items-center justify-center border-2 border-[#1A0089] rounded-2xl px-6 sm:px-8 md:px-12 lg:px-16 py-3 md:py-4 hover:bg-[#1A0089] transition-all duration-300 shadow-sm hover:shadow-lg group ${className}`}
         onClick={onClick}
       >
-        <span className="font-medium text-[14px] text-[#2E2E2E] hover:text-white leading-normal">
+        <span className="font-medium text-sm md:text-base lg:text-lg text-[#1A0089] group-hover:text-white leading-normal transition-colors">
           {children}
         </span>
       </button>
@@ -31,10 +31,10 @@ export function Button({
   // Default variant
   return (
     <button
-      className={`relative flex items-center justify-center bg-[#1A0089] rounded-[16px] px-[72px] py-[16px] hover:bg-[#2E0099] transition-colors ${className}`}
+      className={`relative flex items-center justify-center bg-[#1A0089] rounded-2xl px-6 sm:px-8 md:px-12 lg:px-16 py-4 md:py-5 hover:bg-[#2E0099] active:bg-[#150066] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-100 ${className}`}
       onClick={onClick}
     >
-      <span className="font-black text-[24px] text-[#EFE7D3] tracking-[-0.048px] leading-[24px]">
+      <span className="font-black text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#EFE7D3] leading-tight">
         {children}
       </span>
     </button>
